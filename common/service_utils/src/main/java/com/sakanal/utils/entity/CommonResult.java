@@ -13,7 +13,7 @@ public class CommonResult<T> {
     private Integer code;
     private Boolean success;
     private String message;
-    private T date;
+    private T data;
 
     public CommonResult(Integer code, Boolean success, String message) {
         this.code = code;
@@ -21,11 +21,11 @@ public class CommonResult<T> {
         this.message = message;
     }
 
-    public CommonResult<T> SUCCESS(T date){
+    public CommonResult<T> SUCCESS(T data){
         this.code = ResultCode.SUCCESS.getKey();
         this.success = true;
         this.message = ResultMessage.SUCCESS.getMessage();
-        this.date=date;
+        this.data=data;
         return this;
     }
     public CommonResult<T> SUCCESS(){

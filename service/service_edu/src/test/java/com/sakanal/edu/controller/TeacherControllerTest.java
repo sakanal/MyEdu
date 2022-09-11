@@ -18,7 +18,7 @@ class TeacherControllerTest {
     void testGetAll(){
         CommonResult<List<Teacher>> all = teacherController.findAll();
         if (all.getSuccess()){
-            List<Teacher> date = all.getDate();
+            List<Teacher> date = all.getData();
             for (Teacher teacher:date){
                 System.out.println(teacher);
             }
