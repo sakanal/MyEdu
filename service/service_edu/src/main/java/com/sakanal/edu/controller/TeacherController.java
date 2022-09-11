@@ -67,8 +67,8 @@ public class TeacherController {
     @ApiOperation(value = "分页查询")
     @PostMapping("/pageFind/{current}")
     public CommonResult<Page<Teacher>> pageFind(@ApiParam("页码")@PathVariable("current")Integer current,
-                                                TeacherQuery teacherQuery){
-        Page<Teacher> teacherPage = new Page<>(current,7);
+                                                @RequestBody TeacherQuery teacherQuery){
+        Page<Teacher> teacherPage = new Page<>(current,10);
         if (teacherQuery!=null){
             QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
             String name = teacherQuery.getName();
