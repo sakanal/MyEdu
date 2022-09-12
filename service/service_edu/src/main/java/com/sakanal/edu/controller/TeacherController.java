@@ -40,11 +40,6 @@ public class TeacherController {
     @GetMapping("/findAll")
     public CommonResult<List<Teacher>> findAll(){
         List<Teacher> teacherList = teacherService.list(null);
-//        try {
-//            int i=1/0;
-//        } catch (Exception e) {
-//            throw new MyException(444,"执行了自定义异常处理");
-//        }
         if (teacherList.size()>0){
             return new CommonResult<List<Teacher>>().SUCCESS(teacherList);
         }else {
@@ -84,6 +79,7 @@ public class TeacherController {
             if (StringUtils.hasText(endTime))
                 queryWrapper.le("gmt_create",endTime);
 
+            queryWrapper.orderByDesc("gmt_modified");
             teacherService.page(teacherPage,queryWrapper);
         }else {
             teacherService.page(teacherPage);
