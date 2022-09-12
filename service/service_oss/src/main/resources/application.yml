@@ -5,11 +5,13 @@ spring:
     name: service-oss
   profiles:
     active: dev
-
+  servlet:
+    multipart:
+      max-file-size: 10MB
 aliyun:
   oss:
     file:
-      endpoint: oss-cn-hangzhou-internal.aliyuncs.com
+      endpoint: oss-cn-hangzhou.aliyuncs.com
       keyId: LTAI5tRaTHxgfk81RhqjqXMB
       keySecret: si9xFiMIiKWuXFYMYVDfvGqeE4BPKW
       bucketName: guli-edu-sakanal

@@ -2,6 +2,7 @@ package com.sakanal.oss.controller;
 
 import com.sakanal.oss.service.OssService;
 import com.sakanal.utils.entity.CommonResult;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
+@Api(tags = "上传管理")
 @RestController
 @RequestMapping("/oss/file")
 @CrossOrigin

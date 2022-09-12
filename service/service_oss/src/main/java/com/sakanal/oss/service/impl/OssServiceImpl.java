@@ -6,12 +6,14 @@ import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.sakanal.oss.service.OssService;
 import com.sakanal.oss.utils.ConstantPropertiesUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Service
 public class OssServiceImpl implements OssService {
     @Override
     public String uploadFileAvatar(MultipartFile multipartFile) {
