@@ -28,7 +28,7 @@
           :key="imageCropperKey"
           :width="300"
           :height="300"
-          :url="'http://localhost:8002/oss/file/avatar/'+teacher.name"
+          :url="BASE_API+'/oss/file/avatar/'+teacher.name"
           field="multipartFile"
           @close="closeImageUpload"
           @crop-upload-success="cropSuccess"
@@ -60,7 +60,7 @@ export default {
       },
       imageCropperShow: false, // 上传弹框组件是否显示
       imageCropperKey: 0, // 上传组件key值
-      BASE_API: process.env.VUE_APP_BASE_API // 获取dev.env.js里面地址
+      BASE_API: process.env.VUE_APP_OSS_BASE_API // 获取dev.env.js里面地址
     }
   },
   created() {
