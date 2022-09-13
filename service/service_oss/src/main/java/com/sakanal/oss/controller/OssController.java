@@ -22,10 +22,23 @@ public class OssController {
 
     @ApiOperation("上传头像")
     @PostMapping("/avatar/{userName}")
-    public CommonResult<String> uploadOssFile(@PathVariable("userName") String userName,
+    public CommonResult<String> uploadOssAvatar(@PathVariable("userName") String userName,
                                                MultipartFile multipartFile){
         log.info("开始上传头像");
-        String url=ossService.uploadFileAvatar(userName,multipartFile);
+        String url=ossService.uploadFileAvatar("avatar/"+userName,multipartFile);
+        if(StringUtils.hasText(url)){
+            return new CommonResult<String>().SUCCESS(url);
+        }else {
+            return new CommonResult<String>().ERROR();
+        }
+    }
+
+    @ApiOperation("上传课程封面")
+    @PostMapping("/course")
+    public CommonResult<String> uploadOssCourse(MultipartFile multipartFile){
+        log.info("开始上传课程封面");
+        String url = ossService.uploadFileAvatar("course", multipartFile);
+        log.info(url);
         if(StringUtils.hasText(url)){
             return new CommonResult<String>().SUCCESS(url);
         }else {

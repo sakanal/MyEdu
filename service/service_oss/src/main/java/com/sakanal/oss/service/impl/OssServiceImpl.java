@@ -18,7 +18,7 @@ import java.util.UUID;
 @Service
 public class OssServiceImpl implements OssService {
     @Override
-    public String uploadFileAvatar(String userName,MultipartFile multipartFile) {
+    public String uploadFileAvatar(String fileDir,MultipartFile multipartFile) {
         String endpoint = ConstantPropertiesUtils.END_POINT;
         String accessKeyId = ConstantPropertiesUtils.KEY_ID;
         String accessKeySecret = ConstantPropertiesUtils.KEY_SECRET;
@@ -27,9 +27,13 @@ public class OssServiceImpl implements OssService {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         String fileName = uuid+multipartFile.getOriginalFilename();
         String datePath = new DateTime().toString("yyyy/MM/dd");
-        String fileDir = "avatar/"+userName;
 
-        String finalPath = fileDir+"/"+datePath+"/"+fileName;
+        String finalPath = null;
+        if (fileDir!=null){
+            finalPath = fileDir+"/"+datePath+"/"+fileName;
+        }else {
+            finalPath = datePath+"/"+fileName;
+        }
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
