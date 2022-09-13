@@ -18,7 +18,7 @@ public class NewCodeGenerator {
         String password="123456";
 
         String author="sakanal";
-        String serviceDir="D:\\Program Files (x86)\\Developer_tools\\IDEAworkspace\\guli_edu\\service\\service_edu";
+        String serviceDir="D:\\Program Files (x86)\\Developer_tools\\IDEAworkspace\\guli_edu\\guli_edu_api\\service\\service_edu";
 
         String parent="com.sakanal";
         String moduleName="edu";
@@ -26,7 +26,7 @@ public class NewCodeGenerator {
         String tablePrefix = "edu_";
 
         List<String> tables = new ArrayList<>();
-        tables.add("edu_teacher");
+        tables.add("edu_subject");
 
         FastAutoGenerator.create("jdbc:mysql://"+host+":"+port+"/"+database,username,password)
                 .globalConfig(builder -> {
