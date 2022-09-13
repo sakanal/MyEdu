@@ -14,6 +14,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject,"gmtCreate", LocalDateTime.class,LocalDateTime.now());
         this.strictInsertFill(metaObject,"level",Integer.class,0);
+        this.strictInsertFill(metaObject,"isDeleted",Integer.class,0);
 
         this.strictUpdateFill(metaObject,"gmtModified", LocalDateTime.class,LocalDateTime.now());
     }
