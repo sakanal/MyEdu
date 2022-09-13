@@ -1,5 +1,6 @@
 package com.sakanal.edu.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -35,11 +36,11 @@ public class CourseDescription implements Serializable {
     private String description;
 
     @ApiModelProperty("创建时间")
-    @TableField("gmt_create")
+    @TableField(value = "gmt_create",fill = FieldFill.INSERT)
     private LocalDateTime gmtCreate;
 
     @ApiModelProperty("更新时间")
-    @TableField("gmt_modified")
+    @TableField(value = "gmt_modified",fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime gmtModified;
 
 

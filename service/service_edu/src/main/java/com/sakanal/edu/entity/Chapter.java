@@ -1,5 +1,6 @@
 package com.sakanal.edu.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -27,7 +28,7 @@ public class Chapter implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("章节ID")
-      @TableId("id")
+    @TableId("id")
     private String id;
 
     @ApiModelProperty("课程ID")
@@ -43,11 +44,11 @@ public class Chapter implements Serializable {
     private Integer sort;
 
     @ApiModelProperty("创建时间")
-    @TableField("gmt_create")
+    @TableField(value = "gmt_create",fill = FieldFill.INSERT)
     private LocalDateTime gmtCreate;
 
     @ApiModelProperty("更新时间")
-    @TableField("gmt_modified")
+    @TableField(value = "gmt_modified",fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime gmtModified;
 
 
