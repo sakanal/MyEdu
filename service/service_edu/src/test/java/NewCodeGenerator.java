@@ -26,7 +26,10 @@ public class NewCodeGenerator {
         String tablePrefix = "edu_";
 
         List<String> tables = new ArrayList<>();
-        tables.add("edu_subject");
+        tables.add("edu_chapter");
+        tables.add("edu_course");
+        tables.add("edu_course_description");
+        tables.add("edu_video");
 
         FastAutoGenerator.create("jdbc:mysql://"+host+":"+port+"/"+database,username,password)
                 .globalConfig(builder -> {

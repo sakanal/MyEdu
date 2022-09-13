@@ -1,0 +1,7 @@
+aliyun:
+  oss:
+    file:
+      endpoint: oss-cn-hangzhou.aliyuncs.com
+      keyId: LTAI5tQznnn75DgosX5mgKaV
+      keySecret: pv7HVZgc0ns3kkNQIl9tsEd7OgF7gU
+      bucketName: guli-edu-sakanal
