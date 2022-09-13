@@ -6,40 +6,39 @@ import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.sakanal.oss.service.OssService;
 import com.sakanal.oss.utils.ConstantPropertiesUtils;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 @Service
 public class OssServiceImpl implements OssService {
     @Override
-    public String uploadFileAvatar(MultipartFile multipartFile) {
-        // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
+    public String uploadFileAvatar(String userName,MultipartFile multipartFile) {
         String endpoint = ConstantPropertiesUtils.END_POINT;
-        // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
         String accessKeyId = ConstantPropertiesUtils.KEY_ID;
         String accessKeySecret = ConstantPropertiesUtils.KEY_SECRET;
-        // 填写Bucket名称，例如examplebucket。
         String bucketName = ConstantPropertiesUtils.BUCKET_NAME;
-        // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
-        String originalFilename = multipartFile.getOriginalFilename();
-//        String objectName = "exampledir/exampleobject.txt";
-        // 填写本地文件的完整路径，例如D:\\localpath\\examplefile.txt。
-        // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
-//        String filePath= "D:\\localpath\\examplefile.txt";
 
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String fileName = uuid+multipartFile.getOriginalFilename();
+        String datePath = new DateTime().toString("yyyy/MM/dd");
+        String fileDir = "avatar/"+userName;
+
+        String finalPath = fileDir+"/"+datePath+"/"+fileName;
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
         try {
             InputStream inputStream = multipartFile.getInputStream();
             // 创建PutObject请求。
-            ossClient.putObject(bucketName, originalFilename, inputStream);
+            ossClient.putObject(bucketName, finalPath, inputStream);
 
-            return "https://"+bucketName+"."+endpoint+"/"+originalFilename;
+            return "https://"+bucketName+"."+endpoint+"/"+finalPath;
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
                     + "but was rejected with an error response for some reason.");
