@@ -69,10 +69,17 @@ export const constantRoutes = [
         meta: { title: '教师列表', icon: 'table' }
       },
       {
-        path: 'save',
+        path: 'create',
         name: '添加教师',
-        component: () => import('@/views/edu/teacher/save'),
+        component: () => import('@/views/edu/teacher/createOrEdit'),
         meta: { title: '添加教师', icon: 'tree' }
+      },
+      {
+        path: 'edit/:id',
+        name: '修改教师',
+        component: () => import('@/views/edu/teacher/createOrEdit'),
+        meta: { title: '修改教师', noCache: true },
+        hidden: true
       }
     ]
   },
