@@ -116,17 +116,23 @@ export default {
   data() {
     return {
       isLoading: true, // 正在加载
+      isResult: false,
       current: 1, // 页码（当前页）
       teacherQuery: {}, // 查询条件
-      total: 0, // 数据总数
+      total: -1, // 数据总数
       pages: 0, // 总页数
       teacherList: null // 查询之后返回结果
+    }
+  },
+  watch: {
+    isResult: function() {
+      this.isLoading = false
     }
   },
 
   created() {
     this.getTeacherListPage()
-    this.isLoading = false
+    this.isResult = this
   },
 
   methods: {
