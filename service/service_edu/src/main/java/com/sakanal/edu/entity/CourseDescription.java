@@ -1,9 +1,7 @@
 package com.sakanal.edu.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
@@ -28,7 +26,7 @@ public class CourseDescription implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("课程ID")
-      @TableId("id")
+    @TableId(value = "id",type = IdType.INPUT)
     private String id;
 
     @ApiModelProperty("课程简介")

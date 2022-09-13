@@ -2,6 +2,7 @@ package com.sakanal.edu.service;
 
 import com.sakanal.edu.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sakanal.edu.entity.vo.CourseInfoForm;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CourseService extends IService<Course> {
 
+    String saveCourseInfo(CourseInfoForm courseInfoForm);
 }

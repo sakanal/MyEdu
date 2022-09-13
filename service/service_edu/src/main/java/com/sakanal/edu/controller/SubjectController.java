@@ -20,21 +20,21 @@ import java.util.List;
  * @author sakanal
  * @since 2022-09-13
  */
-@Api(tags = "课程管理")
+@Api(tags = "课程类别管理")
 @RestController
 @RequestMapping("/edu/subject")
 public class SubjectController {
     @Resource
     private SubjectService subjectService;
 
-    @ApiOperation("添加课程")
+    @ApiOperation("添加课程类别")
     @PostMapping("/upload")
     public CommonResult<Boolean> upload(@ApiParam("上传的课程表格") MultipartFile multipartFile){
         subjectService.saveSubject(multipartFile);
         return new CommonResult<Boolean>().SUCCESS();
     }
 
-    @ApiOperation("获取所有课程")
+    @ApiOperation("获取所有课程类别")
     @GetMapping("/findAll")
     public CommonResult<List<ResultSubject>> findAll(){
         List<ResultSubject> allSubject = subjectService.getAllSubject();
