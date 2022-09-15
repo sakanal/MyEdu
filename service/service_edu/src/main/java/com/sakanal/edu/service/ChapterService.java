@@ -2,6 +2,9 @@ package com.sakanal.edu.service;
 
 import com.sakanal.edu.entity.Chapter;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sakanal.edu.entity.result.ResultChapter;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ChapterService extends IService<Chapter> {
 
+    List<ResultChapter> getAllChapterByCourseId(String courseId);
+
+    Boolean removeChapterById(String chapterId);
 }
