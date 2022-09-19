@@ -45,7 +45,6 @@ public class TeacherControllerAspect {
                     arg=1;
             }
         }
-
         return joinPoint.proceed(args);
     }
 

@@ -65,6 +65,12 @@ public class CommonResult<T> {
         this.message = ResultMessage.ERROR.getMessage();
         return this;
     }
+    public CommonResult<T> ERROR(String message){
+        this.code = ResultCode.ERROR.getKey();
+        this.success = false;
+        this.message = message;
+        return this;
+    }
 
 
 

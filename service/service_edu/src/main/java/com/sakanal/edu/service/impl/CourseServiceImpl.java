@@ -118,8 +118,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         if (!"".equals(courseId)){
             try {
                 //删除课程小节
-                QueryWrapper<Video> videoQueryWrapper = new QueryWrapper<Video>().eq("course_id",courseId);
-                videoService.remove(videoQueryWrapper);
+                videoService.removeVideoByCourseId(courseId);
                 //删除课程章节
                 QueryWrapper<Chapter> chapterQueryWrapper = new QueryWrapper<Chapter>().eq("course_id", courseId);
                 chapterService.remove(chapterQueryWrapper);

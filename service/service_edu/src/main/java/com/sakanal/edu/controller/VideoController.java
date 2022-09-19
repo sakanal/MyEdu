@@ -1,13 +1,17 @@
 package com.sakanal.edu.controller;
 
 import com.sakanal.edu.entity.Video;
+import com.sakanal.edu.feign.VodClient;
 import com.sakanal.edu.service.VideoService;
+import com.sakanal.utils.code.ResultCode;
 import com.sakanal.utils.entity.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * <p>
@@ -23,6 +27,8 @@ import javax.annotation.Resource;
 public class VideoController {
     @Resource
     private VideoService videoService;
+    @Resource
+    private VodClient vodClient;
 
     @ApiOperation("添加小节")
     @PostMapping("/add")
@@ -44,7 +50,7 @@ public class VideoController {
             return new CommonResult<Video>().NO_RESULT_DATA();
         }
     }
-//    TODO
+    //    TODO
     @ApiOperation("修改小节")
     @PutMapping("/update")
     public CommonResult<Boolean> update(@RequestBody Video video){
@@ -59,6 +65,13 @@ public class VideoController {
     @ApiOperation("删除小节")
     @DeleteMapping("/remove/{videoId}")
     public CommonResult<Boolean> remove(@PathVariable("videoId")String videoId){
+        Video video = videoService.getById(videoId);
+        if (StringUtils.hasText(video.getVideoSourceId())){
+            CommonResult<Boolean> removeVideoResult = vodClient.removeVideo(video.getVideoSourceId());
+            if (Objects.equals(removeVideoResult.getCode(), ResultCode.ERROR.getKey())){
+                return new CommonResult<Boolean>().ERROR("删除失败，"+removeVideoResult.getMessage());
+            }
+        }
         boolean result = videoService.removeById(videoId);
         if (result){
             return new CommonResult<Boolean>().SUCCESS();

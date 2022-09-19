@@ -1,8 +1,8 @@
 server:
-  port: 8001
+  port: 8004
 spring:
   application:
-    name: eduService
+    name: cmsService
   profiles:
     active: dev
   jackson:
