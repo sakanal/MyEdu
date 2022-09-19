@@ -12,10 +12,6 @@ import java.util.List;
 public class TestVod {
 
     public static void main(String[] args) throws ClientException {
-        testUploadVideo("LTAI5tNkFVyZa2BP7TSyF7tn",
-                "Uq1wTmlvj2CKPIoKADrhyS6txdf7D4",
-                "测试代码方式上传",
-                "D:/guli_edu_api – pom.xml (guli_edu_api).mp4");
     }
     private static void testUploadVideo(String accessKeyId, String accessKeySecret, String title, String fileName) {
         UploadVideoRequest request = new UploadVideoRequest(accessKeyId, accessKeySecret, title, fileName);
