@@ -17,6 +17,8 @@
         <module>service_vod</module>
         <module>service_cms</module>
         <module>service_acl</module>
+        <module>service_msm</module>
+        <module>service_ucenter</module>
     </modules>
 
     <properties>
@@ -27,6 +29,11 @@
         <dependency>
             <groupId>com.sakanal.base</groupId>
             <artifactId>service_base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sakanal.utils</groupId>
+            <artifactId>service_utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
