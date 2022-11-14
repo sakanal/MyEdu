@@ -1,17 +1,18 @@
 package com.sakanal.ucenter.controller;
 
+import com.sakanal.ucenter.entity.UcenterMember;
 import com.sakanal.ucenter.service.UcenterMemberService;
 import com.sakanal.ucenter.vo.LoginVo;
 import com.sakanal.ucenter.vo.RegisterVo;
 import com.sakanal.utils.entity.CommonResult;
+import com.sakanal.utils.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -41,5 +42,22 @@ public class UcenterMemberController {
     public CommonResult<String> register(@RequestBody RegisterVo registerVo){
         ucenterMemberService.register(registerVo);
         return new CommonResult<String>().SUCCESS();
+    }
+
+    // 根据token获取用户信息
+    @GetMapping("/getUserInfo")
+    public CommonResult<UcenterMember> getUserInfo(HttpServletRequest request){
+        String userId = JwtUtil.getUserIdByJwtToken(request);
+        if (StringUtils.hasText(userId)){
+            UcenterMember ucenterMember = ucenterMemberService.getById(userId);
+            if (ucenterMember!=null){
+                return new CommonResult<UcenterMember>().SUCCESS(ucenterMember);
+            }else {
+                return new CommonResult<UcenterMember>().ERROR("登录信息无效");
+            }
+        }else {
+            return new CommonResult<UcenterMember>().ERROR("请先登录");
+        }
+
     }
 }
