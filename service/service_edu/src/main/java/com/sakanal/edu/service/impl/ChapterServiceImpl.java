@@ -9,6 +9,7 @@ import com.sakanal.edu.mapper.ChapterMapper;
 import com.sakanal.edu.mapper.VideoMapper;
 import com.sakanal.edu.service.ChapterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ import java.util.List;
  * @author sakanal
  * @since 2022-09-13
  */
+@Slf4j
 @Service
 public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> implements ChapterService {
     @Resource

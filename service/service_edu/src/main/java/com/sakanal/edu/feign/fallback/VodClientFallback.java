@@ -17,4 +17,9 @@ public class VodClientFallback implements VodClient {
     public CommonResult<Boolean> batchRemoveVideo(List<String> videoIdList) {
         return new CommonResult<Boolean>().ERROR("批量删除视频失败");
     }
+
+    @Override
+    public CommonResult<String> getPlayAuth(String videoSourceId) {
+        return new CommonResult<String>().ERROR("获取视频凭证失败");
+    }
 }

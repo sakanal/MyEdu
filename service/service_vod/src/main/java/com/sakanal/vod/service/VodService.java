@@ -10,4 +10,6 @@ public interface VodService {
     void removeVideo(String videoSourceId);
 
     void batchRemoveVideo(List<String> videoIdList);
+
+    String getPlayAuth(String id);
 }

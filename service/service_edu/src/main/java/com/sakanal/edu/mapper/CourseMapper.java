@@ -3,6 +3,7 @@ package com.sakanal.edu.mapper;
 import com.sakanal.edu.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sakanal.edu.entity.vo.CoursePublishVo;
+import com.sakanal.edu.entity.vo.CourseWebVo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -16,4 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CourseMapper extends BaseMapper<Course> {
     public CoursePublishVo getPublishCourseInfo(String courseId);
+
+    CourseWebVo getBaseCourseInfo(Long courseId);
 }

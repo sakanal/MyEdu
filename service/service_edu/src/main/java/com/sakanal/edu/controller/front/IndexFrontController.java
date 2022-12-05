@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/edu/index")
-public class IndexController {
+public class IndexFrontController {
     @Resource
     private TeacherService teacherService;
     @Resource

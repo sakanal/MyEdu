@@ -1,9 +1,14 @@
 package com.sakanal.edu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sakanal.edu.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sakanal.edu.entity.vo.CourseFrontVo;
 import com.sakanal.edu.entity.vo.CourseInfoForm;
 import com.sakanal.edu.entity.vo.CoursePublishVo;
+import com.sakanal.edu.entity.vo.CourseWebVo;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -25,4 +30,8 @@ public interface CourseService extends IService<Course> {
     public CoursePublishVo getPublishCourseInfo(String courseId);
 
     void removeCourseById(String courseId);
+
+    HashMap<String, Object> getCourseList(Page<Course> coursePage, CourseFrontVo courseFrontVo);
+
+    CourseWebVo getBaseCourseInfo(Long courseId);
 }

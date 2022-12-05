@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +20,7 @@ import lombok.Setter;
  * @author sakanal
  * @since 2022-09-13
  */
-@Getter
-@Setter
+@Data
 @TableName("edu_video")
 @ApiModel(value = "Video对象", description = "课程视频")
 public class Video implements Serializable {

@@ -1,9 +1,11 @@
 package com.sakanal.vod.controller;
 
+import com.sakanal.base.exception.MyException;
 import com.sakanal.utils.entity.CommonResult;
 import com.sakanal.vod.service.VodService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +37,7 @@ public class VodController {
 
     @ApiOperation("根据视频id删除阿里云中的视频")
     @DeleteMapping("/remove/{videoSourceId}")
-    public CommonResult<Boolean> removeVideo(@PathVariable("videoSourceId")String videoSourceId){
+    public CommonResult<Boolean> removeVideo(@ApiParam("视频id")@PathVariable("videoSourceId")String videoSourceId){
         log.info("开始删除视频");
         vodService.removeVideo(videoSourceId);
         return new CommonResult<Boolean>().SUCCESS();
@@ -43,8 +45,16 @@ public class VodController {
 
     @ApiOperation("删除多个阿里云中的视频")
     @DeleteMapping("/batchRemove")
-    public CommonResult<Boolean> batchRemoveVideo(@RequestParam("videoIdList")List<String> videoIdList){
+    public CommonResult<Boolean> batchRemoveVideo(@ApiParam("视频id列表")@RequestParam("videoIdList")List<String> videoIdList){
         vodService.batchRemoveVideo(videoIdList);
         return new CommonResult<Boolean>().SUCCESS();
     }
+
+    @ApiOperation("根据视频id获取视频凭证")
+    @GetMapping("/getPlayAuth/{videoSourceId}")
+    public CommonResult<String> getPlayAuth(@ApiParam("视频id") @PathVariable("videoSourceId") String videoSourceId){
+        String playAuth = vodService.getPlayAuth(videoSourceId);
+        return new CommonResult<String>().SUCCESS(playAuth);
+    }
+
 }

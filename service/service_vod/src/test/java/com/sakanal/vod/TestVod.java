@@ -12,10 +12,11 @@ import java.util.List;
 public class TestVod {
 
     public static void main(String[] args) throws ClientException {
-        testUploadVideo("",
-                "",
-                "测试代码方式上传",
-                "D:/guli_edu_api – pom.xml (guli_edu_api).mp4");
+//        testUploadVideo("",
+//                "",
+//                "测试代码方式上传",
+//                "D:/guli_edu_api – pom.xml (guli_edu_api).mp4");
+        getPlayAuth();
     }
     private static void testUploadVideo(String accessKeyId, String accessKeySecret, String title, String fileName) {
         UploadVideoRequest request = new UploadVideoRequest(accessKeyId, accessKeySecret, title, fileName);
@@ -43,7 +44,7 @@ public class TestVod {
             GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
             GetVideoPlayAuthResponse  response = new GetVideoPlayAuthResponse();
             //向request对象设置视频id
-            request.setVideoId("451048539a954dc58730fb1b622b3715");
+            request.setVideoId("30b5bac8b80049a59fd4a5bc2986ef74");
             //调用初始化对象的方法，传递request，获取数据
             response = client.getAcsResponse(request);
             String playAuth = response.getPlayAuth();
