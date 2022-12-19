@@ -2,11 +2,9 @@ package com.sakanal.edu.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sakanal.base.bean.vo.CourseVoOrder;
 import com.sakanal.edu.entity.Course;
-import com.sakanal.edu.entity.vo.CourseInfoForm;
-import com.sakanal.edu.entity.vo.CoursePublishVo;
-import com.sakanal.edu.entity.vo.CourseQuery;
-import com.sakanal.edu.entity.vo.TeacherQuery;
+import com.sakanal.edu.entity.vo.*;
 import com.sakanal.edu.service.CourseService;
 import com.sakanal.utils.entity.CommonResult;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -137,6 +135,19 @@ public class CourseController {
     public  CommonResult<Boolean> remove(@PathVariable("courseId")String courseId){
         courseService.removeCourseById(courseId);
         return new CommonResult<Boolean>().SUCCESS();
+    }
+
+
+    //根据课程id，查询课程信息【订单】
+    @PostMapping("/getCourseInfoByIdOrder/{courseId}")
+    public CourseVoOrder getCourseInfoByIdOrder(@PathVariable Long courseId){
+        CourseWebVo courseInfo = courseService.getBaseCourseInfo(courseId);
+
+        CourseVoOrder eduCourseVo = new CourseVoOrder();
+        BeanUtils.copyProperties(courseInfo,eduCourseVo);
+
+        return eduCourseVo;
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.sakanal.ucenter.controller;
 
+import com.sakanal.base.bean.vo.UcenterMemberVoOrder;
 import com.sakanal.ucenter.entity.UcenterMember;
 import com.sakanal.ucenter.service.UcenterMemberService;
 import com.sakanal.ucenter.vo.LoginVo;
@@ -8,6 +9,7 @@ import com.sakanal.utils.entity.CommonResult;
 import com.sakanal.utils.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,6 +60,16 @@ public class UcenterMemberController {
         }else {
             return new CommonResult<UcenterMember>().ERROR("请先登录");
         }
+    }
 
+
+    //根据用户id查询用户信息
+    @PostMapping("/getUserInfoById/{userId}")
+    public UcenterMemberVoOrder getUserInfoById(@PathVariable String userId){
+        UcenterMember member = ucenterMemberService.getById(userId);
+        UcenterMemberVoOrder memberVo = new UcenterMemberVoOrder();
+        BeanUtils.copyProperties(member,memberVo);
+
+        return memberVo;
     }
 }

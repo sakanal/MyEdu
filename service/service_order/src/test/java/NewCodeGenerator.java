@@ -23,7 +23,7 @@ public class NewCodeGenerator {
         //包名
         String parent = "com.sakanal";
         //父模块名
-        String moduleName = "edu";
+        String moduleName = "order";
         //要去除的表前缀
         String tablePrefix = "t_";
 

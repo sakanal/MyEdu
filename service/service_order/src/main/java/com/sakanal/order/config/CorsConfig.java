@@ -1,4 +1,4 @@
-package com.sakanal.edu.config;
+package com.sakanal.order.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.sakanal.edu.config;
+package com.sakanal.order.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
