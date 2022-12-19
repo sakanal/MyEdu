@@ -53,4 +53,18 @@ public class OrderController {
         return new CommonResult<Order>().SUCCESS(order);
     }
 
+
+    //根据【用户id、课程id】查询订单表中的状态
+    @GetMapping("/isBuyCourse/{memberId}/{courseId}")
+    public Boolean isBuyCourse(@PathVariable String memberId,@PathVariable String courseId)	  {
+        QueryWrapper<Order> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id",courseId);
+        wrapper.eq("member_id",memberId);
+        wrapper.eq("status",1);//支付状态 【1】代表已支付
+        long result = orderService.count(wrapper);
+
+        //已支付
+        return result > 0;
+    }
+
 }
