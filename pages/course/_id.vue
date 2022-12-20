@@ -3,34 +3,31 @@
     <!-- /课程详情 开始 -->
     <section class="container">
       <section class="path-wrap txtOf hLh30">
-        <a href="#" title class="c-999 fsize14">首页</a>
+        <a href="/" title class="c-999 fsize14">首页</a>
         \
-        <a href="#" title class="c-999 fsize14">课程列表</a>
+        <a href="/course" title class="c-999 fsize14">{{
+            courseInfo.subjectLevelOne
+          }}</a>
         \
-        <span class="c-333 fsize14">Java精品课程</span>
+        <span class="c-333 fsize14">{{ courseInfo.subjectLevelTwo }}</span>
       </section>
       <div>
         <article class="c-v-pic-wrap" style="height: 357px">
           <section class="p-h-video-box" id="videoPlay">
-            <img
-              src="~/assets/photo/course/1442295581911.jpg"
-              alt="Java精品课
-程"
-              class="dis c-v-pic"
-            />
+            <img :src="courseInfo.cover" :alt="courseInfo.title" class="dis c-v-pic" height="355px" width="630px"/>
           </section>
         </article>
         <aside class="c-attr-wrap">
           <section class="ml20 mr15">
             <h2 class="hLh30 txtOf mt15">
-              <span class="c-fff fsize24">Java精品课程</span>
+              <span class="c-fff fsize24">{{ courseInfo.title }}</span>
             </h2>
             <section class="c-attr-jg">
               <span class="c-fff">价格：</span>
-              <b class="c-yellow" style="font-size: 24px">￥0.00</b>
+              <b class="c-yellow" style="font-size: 24px">￥{{ courseInfo.price }}</b>
             </section>
             <section class="c-attr-mt c-attr-undis">
-              <span class="c-fff fsize14">主讲： 唐嫣&nbsp;&nbsp;&nbsp;</span>
+              <span class="c-fff fsize14">主讲： {{ courseInfo.teacherName }}&nbsp;&nbsp;&nbsp;</span>
             </section>
             <section class="c-attr-mt of">
               <span class="ml10 vam">
@@ -38,10 +35,11 @@
                 <a class="c-fff vam" title="收藏" href="#">收藏</a>
               </span>
             </section>
-            <section class="c-attr-mt">
-              <a href="#" title="立即观看" class="comm-btn c-btn-3"
-              >立即观 看</a
-              >
+            <section class="c-attr-mt" v-if="isBuyCourse || Number(courseInfo.price) === 0">
+              <a href="#" title="立即购买" class="comm-btn c-btn-3">立 即 观 看</a>
+            </section>
+            <section class="c-attr-mt" v-else>
+              <a @click.prevent="createOrders" href="#" title="立即购买" class="comm-btn c-btn-3">立 即 购 买</a>
             </section>
           </section>
         </aside>
@@ -50,25 +48,22 @@
             <li>
               <p>&nbsp;</p>
               <aside>
-                <span class="c-fff f-fM">购买数</span>
-                <br />
-                <h6 class="c-fff f-fM mt10">150</h6>
+                <span class="c-fff f-fM">销量</span><br />
+                <h6 class="c-fff f-fM mt10">{{ courseInfo.buyCount }}</h6>
               </aside>
             </li>
             <li>
               <p>&nbsp;</p>
               <aside>
-                <span class="c-fff f-fM">课时数</span>
-                <br />
-                <h6 class="c-fff f-fM mt10">20</h6>
+                <span class="c-fff f-fM">课时数</span><br />
+                <h6 class="c-fff f-fM mt10">{{ courseInfo.lessonNum }}</h6>
               </aside>
             </li>
             <li>
               <p>&nbsp;</p>
               <aside>
-                <span class="c-fff f-fM">浏览数</span>
-                <br />
-                <h6 class="c-fff f-fM mt10">501</h6>
+                <span class="c-fff f-fM">浏览数</span><br />
+                <h6 class="c-fff f-fM mt10">{{ courseInfo.viewCount }}</h6>
               </aside>
             </li>
           </ol>
@@ -81,11 +76,8 @@
           <section class="mr30">
             <div class="i-box">
               <div>
-                <section
-                  id="c-i-tabTitle"
-                  class="c-infor-tabTitle c-tab- title"
-                >
-                  <a name="c-i" class="current" title="课程详情">课程详情</a>
+                <section id="c-i-tabTitle" class="c-infor-tabTitle c-tab-title">
+                  <a name="c-i" class="current" title="课程详情">课 程 详 情</a>
                 </section>
               </div>
               <article class="ml10 mr10 pt20">
@@ -95,24 +87,8 @@
                   </h6>
                   <div class="course-txt-body-wrap">
                     <section class="course-txt-body">
-                      <p>
-                        Java的发展历史，可追溯到1990年。当
-                        时Sun&nbsp;Microsystem公司为了发展消费性电子产品而进行了一个名为Green的项目计划。该
-                        计划
-                        负责人是James&nbsp;Gosling。起初他以C++来写一种内嵌式软
-                        件，可以放在烤面包机或PAD等小型电子消费设备里，使得机器更聪明，具有人工智
-                        能。但他发现C++并不适合完成这类任务！因为C++常会有使系统失
-                        效的程序错误，尤其是内存管理，需要程序设计师记录并管理内存资源。这给设计师们造成
-                        极大的负担，并可能产生许多bugs。&nbsp;
-                        <br />为了解决所遇到的问题，Gosling决定要发展一种新的语言，
-                        来解决C++的潜在性危险问题，这个语言名叫Oak。Oak是一种可移植性语言，也就是一种平台独立
-                        语言，能够在各种芯片上运行。
-                        <br />1994年，Oak技术日趋成熟，这时网络正开始蓬勃发展。Oak研
-                        发小组发现Oak很适合作为一种网络程序语言。因此发展了一个能与Oak配合的浏
-                        览器--WebRunner，后更名为HotJava，它证明了Oak是一种能在网
-                        络上发展的程序语言。由于Oak商标已被注册，工程师们便想到以自己常
-                        享用的咖啡(Java)来重新命名，并于Sun&nbsp;World&nbsp;95中
-                        被发表出来。
+                      <p v-html="courseInfo.description">
+                        {{ courseInfo.description }}
                       </p>
                     </section>
                   </div>
@@ -127,28 +103,17 @@
                       <menu id="lh-menu" class="lh-menu mt10 mr10">
                         <ul>
                           <!-- 文件目录 -->
-                          <li class="lh-menu-stair">
-                            <a
-                              href="javascript: void(0)"
-                              title="第一章"
-                              class="current-1"
-                            >
-                              <em class="lh-menu-i-1 icon18 mr10"></em>第一章
+                          <li class="lh-menu-stair" v-for="chapter in chapterList" :key="chapter.id">
+                            <a href="javascript: void(0)" :title="chapter.title" class="current-1">
+                              <em class="lh-menu-i-1 icon18 mr10"></em>{{chapter.title}}
                             </a>
                             <ol class="lh-menu-ol" style="display: block">
-                              <li class="lh-menu-second ml30">
-                                <a href="#" title>
-                                  <span class="fr">
-                                    <i class="free-icon vam mr10">免费试听</i>
+                              <li class="lh-menu-second ml30" v-for="video in chapter.children" :key="video.id">
+                                <a :href="'/course/vod/'+video.videoSourceId" target="_blank">
+                                  <span class="fr" v-if="video.isFree === 1">
+                                    <i class="free-icon vam mr10">免费试听 </i>
                                   </span>
-                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
-                                  >第一节
-                                </a>
-                              </li>
-                              <li class="lh-menu-second ml30">
-                                <a href="#" title class="current-2">
-                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
-                                  >第二节
+                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em>{{video.title}}
                                 </a>
                               </li>
                             </ol>
@@ -174,19 +139,14 @@
                   <li>
                     <div class="u-face">
                       <a href="#">
-                        <img
-                          src="~/assets/photo/teacher/1442297969808.jpg"
-                          width="50"
-                          height="50"
-                          alt
-                        />
+                        <img :src="courseInfo.avatar" width="50" height="50" alt/>
                       </a>
                     </div>
                     <section class="hLh30 txtOf">
-                      <a class="c-333 fsize16 fl" href="#">周杰伦</a>
+                      <a class="c-333 fsize16 fl" href="#">{{courseInfo.teacherName}}</a>
                     </section>
                     <section class="hLh20 txtOf">
-                      <span class="c-999">毕业于北京大学数学系</span>
+                      <span class="c-999">{{courseInfo.intro}}</span>
                     </section>
                   </li>
                 </ul>
@@ -200,8 +160,44 @@
     <!-- /课程详情 结束 -->
   </div>
 </template>
+
 <script>
-export default {};
+import course from "@/api/course";
+import order from "@/api/order";
+export default {
+  data() {
+    return {
+      chapterList: [],
+      courseInfo: {
+        id: "",
+      },
+      isBuyCourse: false
+    };
+  },
+  created() {
+    this.courseInfo.id = this.$route.params.id;
+    //获取课程详细信息
+    this.getCourseInfo();
+  },
+  methods: {
+    //获取课程详细信息
+    getCourseInfo() {
+      course.getCourseInfo(this.courseInfo.id).then((resp) => {
+        this.chapterList = resp.data.data.chapterVideoList;
+        this.courseInfo = resp.data.data.courseInfo;
+        this.isBuyCourse = resp.data.data.isBuyCourse;
+      });
+    },
+    //生成订单的方法
+    createOrders(){
+      order.createOrder(this.courseInfo.id).then(resp=>{
+        //跳转订单显示页面
+        this.$router.push({path:'/course/order/'+resp.data.data})
+      })
+    },
+
+  }
+};
 </script>
 
 

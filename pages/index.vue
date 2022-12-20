@@ -4,11 +4,11 @@
     <!-- 幻灯片 开始 -->
     <div v-swiper:mySwiper="swiperOption">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background: #040B1B;">
-                <a target="_blank" href="/">
-                    <img src="@/assets/photo/banner/94349871_p1_任尔东西南北风.png" alt="首页banner">
-                </a>
-            </div>
+<!--            <div class="swiper-slide" style="background: #040B1B;">-->
+<!--                <a target="_blank" href="/">-->
+<!--                    <img src="@/assets/photo/banner/94349871_p1_任尔东西南北风.png" alt="首页banner">-->
+<!--                </a>-->
+<!--            </div>-->
             <div v-for="banner in bannerList" :key="banner.id" class="swiper-slide" style="background: #040B1B;">
                 <a target="_blank" :href="banner.linkUrl">
                     <img :src="banner.imageUrl" :alt="banner.title">
@@ -38,11 +38,11 @@
                     <section class="course-img">
                       <img :src="course.cover" class="img-responsive" :alt="course.title">
                       <div class="cc-mask">
-                        <a href="#" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                        <a :href="'/course/'+course.id" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
                       </div>
                     </section>
                     <h3 class="hLh30 txtOf mt10">
-                      <a href="#" :title="course.title" class="course-title fsize18 c-333">{{course.title}}</a>
+                      <a :href="'/course/'+course.id" :title="course.title" class="course-title fsize18 c-333">{{course.title}}</a>
                     </h3>
                     <section class="mt10 hLh20 of">
                       <span class="fr jgTag bg-green" v-if="Number(course.price) === 0">
