@@ -56,7 +56,8 @@ export default {
       isSave: true,
       teacher: {
         sort: 0,
-        level: 1
+        level: 1,
+        avatar: 'https://guli-edu-sakanal.oss-cn-hangzhou.aliyuncs.com/avatar/string/2022/09/13/ef45e4e3e2764a77a3925aa4ce1f5e31multipartFile.png'
       },
       imageCropperShow: false, // 上传弹框组件是否显示
       imageCropperKey: 0, // 上传组件key值

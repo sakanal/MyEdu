@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :inline="true" :model="teacherQuery" class="demo-form-inline">
+    <el-form :inline="true" :model="teacherQuery" size="small" class="demo-form-inline">
       <el-form-item>
         <el-input v-model="teacherQuery.name" placeholder="姓名" />
       </el-form-item>
@@ -34,66 +34,32 @@
       </el-form-item>
     </el-form>
 
-    <el-table
-      v-loading="isLoading"
-      :data="teacherList"
-      style="width: 100%"
-    >
-
-      <el-table-column
-        label="序号"
-        width="60"
-      >
+    <el-table v-loading="isLoading" :data="teacherList" style="width: 100%">
+      <el-table-column label="序号" width="60">
         <template slot-scope="scope">
           {{ (current-1)*10 + scope.$index + 1 }}
         </template>
       </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="120"
-      />
+      <el-table-column prop="name" label="姓名" width="120"/>
 
-      <el-table-column
-        prop="level"
-        label="头衔"
-        width="120"
-      >
+      <el-table-column prop="level" label="头衔" width="120">
         <template slot-scope="scope">
           {{ scope.row.level===1 ? '高级教师':'首席教师' }}
         </template>
       </el-table-column>
 
-      <el-table-column
-        prop="career"
-        label="资历"
-      />
+      <el-table-column prop="career" label="资历"/>
 
-      <el-table-column
-        prop="gmtCreate"
-        label="添加时间"
-        width="180"
-      />
+      <el-table-column prop="gmtCreate" label="添加时间" width="180"/>
 
-      <el-table-column
-        prop="sort"
-        label="排序"
-        width="60"
-      />
+      <el-table-column prop="sort" label="排序" width="60"/>
 
-      <el-table-column
-        label="操作"
-        width="200"
-        align="center">
+      <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
           <router-link :to="'/teacher/edit/'+scope.row.id">
             <el-button type="primary" size="mini">修改</el-button>
           </router-link>
-          <el-button
-            size="mini"
-            type="danger"
-            @click="removeTeacherById(scope.$index, scope.row)">删除</el-button>
-
+          <el-button size="mini" type="danger" @click="removeTeacherById(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -116,7 +82,6 @@ export default {
   data() {
     return {
       isLoading: true, // 正在加载
-      isResult: false,
       current: 1, // 页码（当前页）
       teacherQuery: {}, // 查询条件
       total: -1, // 数据总数
@@ -124,15 +89,9 @@ export default {
       teacherList: null // 查询之后返回结果
     }
   },
-  watch: {
-    isResult: function() {
-      this.isLoading = false
-    }
-  },
-
   created() {
     this.getTeacherListPage()
-    this.isResult = this
+    this.isLoading = false
   },
 
   methods: {
@@ -160,10 +119,7 @@ export default {
       }).then(() => {
         teacher.removeTeacherById(row.id)
           .then(response => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
+            this.$message.success('删除成功')
             this.getTeacherListPage()
           })
           .catch(response => {

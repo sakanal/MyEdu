@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: '谷粒学苑后台管理',
 
   /**
    * @type {boolean} true | false

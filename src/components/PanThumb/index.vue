@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .pan-item {
   width: 200px;
   height: 200px;
@@ -55,11 +55,11 @@ export default {
   height: 100%;
   background-position: center center;
   background-size: cover;
-  border-radius: 50%;
+  border-radius: 100%;
   overflow: hidden;
   position: absolute;
-  transform-origin: 95% 40%;
-  transition: all 0.3s ease-in-out;
+  /*transform-origin: 95% 40%;*/
+  transition: all 0.7s ease-in-out;
 }
 
 /* .pan-thumb:after {
@@ -132,7 +132,7 @@ export default {
 }
 
 .pan-item:hover .pan-thumb {
-  transform: rotate(-110deg);
+  transform: rotate(-360deg);
 }
 
 .pan-item:hover .pan-info p a {
