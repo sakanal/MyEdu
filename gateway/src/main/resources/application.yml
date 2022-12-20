@@ -1,0 +1,49 @@
+# 服务端口号
+server:
+  port: 8222
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        namespace: 4c3ca9cf-4c8d-47cc-a41c-6b8f9fd3e5f5
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: eduService
+          uri: lb://eduService
+          predicates:
+            - Path=/edu/**
+        - id: ossService
+          uri: lb://ossService
+          predicates:
+            - Path=/oss/**
+        - id: vodService
+          uri: lb://vodService
+          predicates:
+            - Path=/vod/**
+        - id: cmsService
+          uri: lb://cmsService
+          predicates:
+            - Path=/cms/**
+        - id: msmService
+          uri: lb://msmService
+          predicates:
+            - Path=/msm/**
+        - id: ucenterService
+          uri: lb://ucenterService
+          predicates:
+            - Path=/ucenter/**
+        - id: orderService
+          uri: lb://orderService
+          predicates:
+            - Path=/order/**
+        - id: statisticsService
+          uri: lb://statisticsService
+          predicates:
+            - Path=/statistics/**
