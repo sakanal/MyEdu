@@ -18,5 +18,11 @@
         <result column="gmt_create" property="gmtCreate" />
         <result column="gmt_modified" property="gmtModified" />
     </resultMap>
+    <select id="getCountRegister" resultType="java.lang.Integer">
+        select count(1)
+        from ucenter_member
+        where date(gmt_create) = #{day}
+    </select>
+
 
 </mapper>

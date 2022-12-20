@@ -72,4 +72,13 @@ public class UcenterMemberController {
 
         return memberVo;
     }
+
+
+    //根据日期，获取那天注册人数
+    @GetMapping("/countRegister/{day}")
+    public CommonResult<Integer> countRegister(@PathVariable String day){
+        Integer count = ucenterMemberService.getCountRegister(day);
+        log.info(String.valueOf(count));
+        return new CommonResult<Integer>().SUCCESS(count);
+    }
 }
